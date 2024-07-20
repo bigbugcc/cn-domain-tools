@@ -1,0 +1,28 @@
+name: 'cn-domain-tools'
+description: 'Automatically add domain ip to hosts file.'
+inputs:
+  domains:
+    description: 'The domain to query.'
+    required: false
+
+  dns-server:
+    description: 'The DNS server used to query.'
+    required: true
+    default: '8.8.8.8'
+
+runs:
+  using: composite
+  steps:
+    - name: Shell
+      shell: bash
+      run: |
+        chmod +x ${{ github.action_path }}/bin/main.sh
+        bash ${{ github.action_path }}/bin/main.sh
+      env:
+        DNS_SERVER: ${{ inputs.dns-server }}
+        DOMAINS_FILE: ${{ github.action_path }}/domain.txt
+        DOMAINS: ${{ inputs.domains }}
+
+branding:
+  icon: 'terminal'
+  color: 'gray-dark'
