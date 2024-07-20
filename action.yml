@@ -21,6 +21,7 @@ runs:
       env:
         DNS_SERVER: ${{ inputs.dns-server }}
         DOMAINS_FILE: ${{ github.action_path }}/domain.txt
+        HOSTS_FILE: ${{ github.action_path }}/hosts.txt
         DOMAINS: ${{ inputs.domains }}
 
 branding:

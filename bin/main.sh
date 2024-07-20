@@ -10,6 +10,9 @@ while read -r domain || [[ -n $domain ]]; do
     echo "✅ Add $ip $domain succeed！"
 done <$DOMAINS_FILE
 
+echo "---- appending hosts.txt to /etc/hosts ----"
+sudo cat $HOSTS_FILE | sudo tee -a /etc/hosts
+
 echo "---- output hosts ----"
 sudo cat /etc/hosts
 
